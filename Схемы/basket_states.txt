@@ -1,0 +1,14 @@
+@startuml
+
+state "Создана" as Created
+state "Оплачена" as Paid
+state "Ошибка при создании" as Error
+
+[*] --> Created: Обработка сообщения:\nРегистрация корзины
+Created --> Paid: Обработка сообщения:\nПлатёж за корзину
+Paid --> [*]
+
+[*] --> Error: Ошибка при создании корзины
+Error --> [*]
+
+@enduml
