@@ -2,12 +2,9 @@
 
 state "Создан" as Created
 state "Выполнен" as Accounted
-state "Отклонён биллингом" as BillingDenied
 
 [*] --> Created: Обработка сообщений:\nПлатёж по услуге и Платёж по корзине
-Created --> Accounted: От BSS получено:\nПлатёж зарегистрирован
-Created --> BillingDenied: От BSS получено:\nПлатёж отклонён
+Created --> Accounted: От адаптера биллинга получено:\nПлатёж зарегистрирован
 Accounted --> [*]
-BillingDenied --> [*]
 
 @enduml
