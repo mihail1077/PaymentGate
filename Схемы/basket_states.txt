@@ -2,6 +2,7 @@
 
 state "Создана" as Created
 state "Оплачена" as Paid
+state "Отмена оплаты" as PayCanceled
 state "Ошибка при создании" as Error
 state "Отменена" as Canceled
 
@@ -11,6 +12,8 @@ Created --> Paid: Обработка сообщения:\nПлатёж за корзину
 Created --> Canceled: Обработка сообщения:\nОтмена корзины
 Paid --> [*]
 Canceled --> [*]
+Paid --> PayCanceled: Обработка сообщения:\nОтмена платежа за корзину
+PayCanceled --> [*]
 
 [*] --> Error: Ошибка при создании корзины
 Error --> [*]
